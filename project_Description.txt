@@ -1,0 +1,139 @@
+Project
+
+We want to ensure you are not ONLY booksmart but also can get things done! Attempt the project below, the earlier you completed them, the higher your rating.
+Task
+
+Scenario: 
+
+You are a principal at a school and you are trying to move from a paper record system to a digital platform. 
+
+ 
+
+Personas: 
+
+
+    Students - 
+
+
+        can enroll and view personal data 
+
+
+        Can enroll in up to 6 classes per semester 
+
+
+    Teachers/Professor - 
+
+
+        can enroll, view personal data, view student records and classes. Cannot delete student 
+
+
+        Can have up to 60 students in a class 
+
+
+        Can have up to 3 classes per semester 
+
+
+    Principle/Dean - Can add anyone to system but cannot add a student to classes. Can remove a student from classes 
+
+
+    Staff 
+
+
+    Admin - can view all user records. Deactivate users
+
+
+    Finance - view only their profile and staff directory 
+
+
+    Management - can view all directories and records
+
+
+    General - can only view own record
+
+
+    Contractor - con only view own record and staff directory 
+
+Roles: 
+
+
+    Student 
+
+
+    Staff 
+
+
+    Admin
+
+
+    Contractor 
+
+ 
+
+Permission: 
+
+
+    Add Classes 
+
+
+    Add Students 
+
+
+    Hire Staff 
+
+
+    View records 
+
+
+        Students in class 
+
+
+        Student in School 
+
+
+        Staff in School 
+
+
+    Enroll in school 
+
+
+    Enroll in classes 
+
+
+    View 
+
+Data Points:   
+
+
+    Assign teachers to classes 
+
+
+    Display total number of classes
+
+
+    Display total number of students 
+
+
+    Display Students per classes 
+
+
+
+
+Action point: 
+
+
+    Add staff 
+
+
+    Enroll in school 
+
+
+    Enroll in class 
+
+
+    Remove student from class 
+
+
+    Deactivate user 
+
+ 
+Submission Date: Monday, 23rd December 2019 
