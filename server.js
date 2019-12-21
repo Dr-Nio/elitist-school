@@ -1,9 +1,23 @@
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
+const cors = require("cors");
 const schema = require("./graphql/schema");
-//const mongoose = require("mongoose");
+require('dotenv').config();
+const mongoose = require("mongoose");
 
 const app = express();
+
+mongoose.connect(
+    process.env.DB_CONN, 
+
+    { 
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+);
+
+//Alloow Crross-Origin
+app.use(cors());
 
 app.use('/graphql', graphqlHTTP({
         schema,

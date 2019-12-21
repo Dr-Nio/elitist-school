@@ -20,32 +20,27 @@ const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLSchema 
     { fname: 'Femi', email: 'femi@gmail.com', id: '5' }
 ];
 
-const UserType = new GraphQLObjectType({
-    name: 'User',
+const StaffType = new GraphQLObjectType({
+    name: 'Staff',
     fields: () => ({
         id: { type: GraphQLID },
+        fname: { type: GraphQLString },
+        lname: { type: GraphQLString },
+        phone: { type: GraphQLString },
         email: { type: GraphQLString },
-        fname: { type: GraphQLString }
+        password: { type: GraphQLString },
+        type: { type: GraphQLString }
     })
-    // fields: () => ({
-    //     id: { type: GraphQLString },
-    //     fname: { type: GraphQLSting },
-    //     lname: { type: GraphQLSting },
-    //     mname: { type: GraphQLSting },
-    //     email: { type: GraphQLSting },
-    //     password: { type: GraphQLSting },
-    //     phone: { type: GraphQLSting }
-    // })
 });
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-        user: {
-            type: UserType,
+        staff: {
+            type: StaffType,
             args: {id: { type: GraphQLID } }, 
             resolve(parent, args){ 
-              return _.find(users, { id: args.id })
+              //return _.find(users, { id: args.id })
             }
         }
     }
