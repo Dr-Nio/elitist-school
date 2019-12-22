@@ -5,18 +5,20 @@ const schema = require("./graphql/schema");
 require('dotenv').config();
 const mongoose = require("mongoose");
 
+//DB env variables
+const uri = process.env.DB_CONN;
+
 const app = express();
 
-mongoose.connect(
-    process.env.DB_CONN, 
+mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true }).then(
+  (res) => {
+   console.log("Connected to Database Successfully.")
+  }
+).catch(() => {
+  console.log("Conntection to database failed.");
+});
 
-    { 
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
-
-//Alloow Crross-Origin
+//Alloow Cross-Origin
 app.use(cors());
 
 app.use('/graphql', graphqlHTTP({
