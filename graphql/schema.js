@@ -2,23 +2,9 @@ const graphql = require('graphql');
 
 const _ = require('lodash');
 
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList, GraphQLSchema } = graphql;
+const Staff = require('../models/staff');
 
- var users = [
-     { fname: 'Umar', email: 'umar@gmail.com', id: '1' },
-     { fname: 'fify', email: 'fify@gmail.com', id: '2' },
-     { fname: 'joy', email: 'joy@gmail.com', id: '3' },
-     { fname: 'brad', email: 'brad@gmail.com', id: '4' },
-     { fname: 'Femi', email: 'femi@gmail.com', id: '5' }
- ];
-
- var users = [
-    { fname: 'Umar', email: 'umar@gmail.com', id: '1' },
-    { fname: 'fify', email: 'fify@gmail.com', id: '2' },
-    { fname: 'joy', email: 'joy@gmail.com', id: '3' },
-    { fname: 'brad', email: 'brad@gmail.com', id: '4' },
-    { fname: 'Femi', email: 'femi@gmail.com', id: '5' }
-];
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLSchema } = graphql;
 
 const StaffType = new GraphQLObjectType({
     name: 'Staff',
@@ -29,7 +15,7 @@ const StaffType = new GraphQLObjectType({
         phone: { type: GraphQLString },
         email: { type: GraphQLString },
         password: { type: GraphQLString },
-        type: { type: GraphQLString }
+        acctype: { type: GraphQLString }
     })
 });
 
@@ -46,6 +32,36 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addStaff: {
+            type: StaffType,
+            args: {
+                fname: { type: GraphQLString },
+                lname: { type: GraphQLString },
+                phone: { type: GraphQLString },
+                email: { type: GraphQLString },
+                password: { type: GraphQLString },
+                acctype: { type: GraphQLString }
+            }, 
+            resolve(parent, args){ 
+              //return _.find(users, { id: args.id });
+              let staff = new Staff({
+                fname: args.fname,
+                lname: args.lname,
+                phone: args.phone,
+                email: args.email,
+                password: args.password,
+                acctype: args.acctype
+              });
+              return staff.save(); 
+            }
+        }
+    }
+});
+
 module.exports = new GraphQLSchema({
-    query: RootQuery 
+    query: RootQuery,
+    mutation: Mutation
 });
