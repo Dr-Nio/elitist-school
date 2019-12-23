@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 const Staff = require('../models/staff');
 
-const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLSchema } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLSchema, GraphQLNonNull } = graphql;
 
 const StaffType = new GraphQLObjectType({
     name: 'Staff',
@@ -38,12 +38,12 @@ const Mutation = new GraphQLObjectType({
         addStaff: {
             type: StaffType,
             args: {
-                fname: { type: GraphQLString },
-                lname: { type: GraphQLString },
-                phone: { type: GraphQLString },
-                email: { type: GraphQLString },
-                password: { type: GraphQLString },
-                acctype: { type: GraphQLString }
+                fname: { type: new GraphQLNonNull(GraphQLString) },
+                lname: { type: new GraphQLNonNull(GraphQLString) },
+                phone: { type: new GraphQLNonNull(GraphQLString) },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                password: { type: new GraphQLNonNull(GraphQLString) },
+                acctype: { type: new GraphQLNonNull(GraphQLString) }
             }, 
             resolve(parent, args){ 
               //return _.find(users, { id: args.id });
