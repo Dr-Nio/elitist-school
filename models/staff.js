@@ -11,12 +11,4 @@ const staffSchema = new Schema({
     now: String
 }); 
 
-const uniqueIndex = (collection, callback) => {
-    collection.createIndex({email:1}, {unique:true}, (err, result) => {
-        if(err) {console.error(`Failed to create index ${err}`); process.exit(1);}
-        console.log(`Unique Index created successfully: ${result}`)
-        callback(result)
-    })
-}
-
 module.exports = mongoose.model("Staff", staffSchema);
