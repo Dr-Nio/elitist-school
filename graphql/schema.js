@@ -2,9 +2,25 @@ const graphql = require('graphql');
 
 const _ = require('lodash');
 
+const Admin = require('../models/admin');
 const Staff = require('../models/staff');
+const Student = require('../models/student');
 
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLSchema, GraphQLNonNull } = graphql;
+
+const now = new Date();
+
+const AdminType = new GraphQLObjectType({
+    name: 'Admin',
+    fields: () => ({
+        id: { type: GraphQLID },
+        fname: { type: GraphQLString },
+        lname: { type: GraphQLString },
+        phone: { type: GraphQLString },
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
+    })
+});
 
 const StaffType = new GraphQLObjectType({
     name: 'Staff',
@@ -14,8 +30,31 @@ const StaffType = new GraphQLObjectType({
         lname: { type: GraphQLString },
         phone: { type: GraphQLString },
         email: { type: GraphQLString },
-        password: { type: GraphQLString },
-        acctype: { type: GraphQLString }
+        password: { type: GraphQLString }
+    })
+});
+
+const StudentType = new GraphQLObjectType({
+    name: 'Student',
+    fields: () => ({
+        id: { type: GraphQLID },
+        fname: { type: GraphQLString },
+        lname: { type: GraphQLString },
+        phone: { type: GraphQLString },
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
+    })
+});
+
+const ContractorType = new GraphQLObjectType({
+    name: 'Contractor',
+    fields: () => ({
+        id: { type: GraphQLID },
+        fname: { type: GraphQLString },
+        lname: { type: GraphQLString },
+        phone: { type: GraphQLString },
+        email: { type: GraphQLString },
+        password: { type: GraphQLString }
     })
 });
 
@@ -35,6 +74,48 @@ const RootQuery = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
+        addAdmin: {
+            type: AdminType,
+            args: {
+                fname: { type: new GraphQLNonNull(GraphQLString) },
+                lname: { type: new GraphQLNonNull(GraphQLString) },
+                phone: { type: new GraphQLNonNull(GraphQLString) },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                password: { type: new GraphQLNonNull(GraphQLString) }
+            }, 
+            resolve(parent, args){ 
+              //return _.find(users, { id: args.id });
+              let admin = new Admin({
+                fname: args.fname,
+                lname: args.lname,
+                phone: args.phone,
+                email: args.email,
+                password: args.password
+              });
+              return admin.save();
+            }
+        },
+        addStudent: {
+            type: StudentType,
+            args: {
+                fname: { type: new GraphQLNonNull(GraphQLString) },
+                lname: { type: new GraphQLNonNull(GraphQLString) },
+                phone: { type: new GraphQLNonNull(GraphQLString) },
+                email: { type: new GraphQLNonNull(GraphQLString) },
+                password: { type: new GraphQLNonNull(GraphQLString) }
+            }, 
+            resolve(parent, args){ 
+              //return _.find(users, { id: args.id });
+              let student = new Student({
+                fname: args.fname,
+                lname: args.lname,
+                phone: args.phone,
+                email: args.email,
+                password: args.password
+              });
+              return student.save();
+            }
+        },
         addStaff: {
             type: StaffType,
             args: {
@@ -42,8 +123,7 @@ const Mutation = new GraphQLObjectType({
                 lname: { type: new GraphQLNonNull(GraphQLString) },
                 phone: { type: new GraphQLNonNull(GraphQLString) },
                 email: { type: new GraphQLNonNull(GraphQLString) },
-                password: { type: new GraphQLNonNull(GraphQLString) },
-                acctype: { type: new GraphQLNonNull(GraphQLString) }
+                password: { type: new GraphQLNonNull(GraphQLString) }
             }, 
             resolve(parent, args){ 
               //return _.find(users, { id: args.id });
@@ -52,10 +132,9 @@ const Mutation = new GraphQLObjectType({
                 lname: args.lname,
                 phone: args.phone,
                 email: args.email,
-                password: args.password,
-                acctype: args.acctype
+                password: args.password
               });
-              return staff.save(); 
+              return staff.save();
             }
         }
     }

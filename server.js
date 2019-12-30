@@ -13,6 +13,7 @@ const app = express();
 
 mongoose.connect(uri , { useNewUrlParser: true, useUnifiedTopology: true }).then(
   (res) => {
+  //mongoose.collection.ensureIndex( { email: 1 }, {unique:true} );
    console.log("Connected to Database Successfully.");
   }
 ).catch(() => {
