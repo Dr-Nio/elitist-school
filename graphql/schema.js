@@ -1,5 +1,7 @@
 const graphql = require('graphql');
 
+const GraphQLDate = require('graphql-date');
+
 const _ = require('lodash');
 
 const Admin = require('../models/admin');
@@ -18,7 +20,9 @@ const AdminType = new GraphQLObjectType({
         lname: { type: GraphQLString },
         phone: { type: GraphQLString },
         email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        password: { type: GraphQLString },
+        created_at: { type: GraphQLDate },
+        updated_at: { type: GraphQLDate }
     })
 });
 
@@ -30,7 +34,9 @@ const StaffType = new GraphQLObjectType({
         lname: { type: GraphQLString },
         phone: { type: GraphQLString },
         email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        password: { type: GraphQLString },
+        created_at: { type: GraphQLDate },
+        updated_at: { type: GraphQLDate }
     })
 });
 
@@ -42,7 +48,9 @@ const StudentType = new GraphQLObjectType({
         lname: { type: GraphQLString },
         phone: { type: GraphQLString },
         email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        password: { type: GraphQLString },
+        created_at: { type: GraphQLDate },
+        updated_at: { type: GraphQLDate }
     })
 });
 
