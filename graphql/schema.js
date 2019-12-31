@@ -4,7 +4,7 @@ const GraphQLDate = require('graphql-date');
 
 const _ = require('lodash');
 
-const Admin = require('../models/admin');
+const Admin = require('../models/admin'); 
 const Staff = require('../models/staff');
 const Student = require('../models/student');
 
@@ -62,7 +62,9 @@ const ContractorType = new GraphQLObjectType({
         lname: { type: GraphQLString },
         phone: { type: GraphQLString },
         email: { type: GraphQLString },
-        password: { type: GraphQLString }
+        password: { type: GraphQLString },
+        created_at: { type: GraphQLDate },
+        updated_at: { type: GraphQLDate }
     })
 });
 
