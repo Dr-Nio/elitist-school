@@ -2,6 +2,8 @@ const graphql = require('graphql');
 
 const GraphQLDate = require('graphql-date');
 
+const validator = require('validator');
+
 const _ = require('lodash');
 
 const Admin = require('../models/admin'); 
